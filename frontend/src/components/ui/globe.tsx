@@ -175,8 +175,8 @@ export const Globe = ({
       .polygonsData((countriesData as any).features || [])
       .polygonCapColor(() => 'rgba(0, 0, 0, 0)') // Transparent landmass fill
       .polygonSideColor(() => 'rgba(0, 0, 0, 0)')
-      .polygonStrokeColor(() => 'rgba(255, 255, 255, 0.24)') // Crisp vector hairline stroke
-      .polygonAltitude(0.005)
+      .polygonStrokeColor(() => 'rgba(255, 255, 255, 0.22)') // Crisp vector hairline stroke
+      .polygonAltitude(0.003) // Positioned beneath the ripple waves
       // Tight, razor-thin white limb boundary (Section 3.1)
       .showAtmosphere(true)
       .atmosphereColor('#ffffff')
@@ -209,8 +209,10 @@ export const Globe = ({
       .pointRadius(0.28)
       .pointsTransitionDuration(0);
 
-    // 9. Target Coordinates (Big Dynamic Vector Ripple Waves)
+    // 9. Target Coordinates (Big Dynamic Vector Ripple Waves rendered on top of country lines)
     globe
+      .ringAltitude(0.012)
+      .ringResolution(64)
       .ringColor((d: any) => (t: number) => {
         const alpha = Math.max(0, (1 - t) * 0.95);
         const vol = d.meta?.volumeGbps || 0;
