@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  /* Infinite Void Canvas */
+  --vec-void: #000000;
+  --vec-surface-hollow: transparent;
+
+  /* Hairline Vector Rules (Structural) */
+  --vec-hairline-mute: rgba(255, 255, 255, 0.07);
+  --vec-hairline-subtle: rgba(255, 255, 255, 0.14);
+  --vec-hairline-bright: rgba(255, 255, 255, 0.40);
+
+  /* Typography Tiers */
+  --vec-text-primary: #FFFFFF;
+  --vec-text-secondary: #71717A;
+  --vec-text-tertiary: #3F3F46;
+
+  /* Precision Signal Beams */
+  --vec-beam-l3-l4: #00F0FF;
+  --vec-beam-l7: #FFFFFF;
+  --vec-beam-critical: #FF3B30;
+  --vec-indicator-live: #00FF66;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-radius: 0px !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--vec-void);
+    color: var(--vec-text-primary);
+    font-family: 'Geist Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 300;
+    overflow: hidden;
+    user-select: none;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* Hairline Vector Panels (Zero-Fill, 1px lines) */
+.vec-panel {
+  background: transparent;
+  border: 1px solid var(--vec-hairline-mute);
+  position: relative;
+}
+
+/* Tabular Numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ultra-Fine Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0px !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}

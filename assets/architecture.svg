@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #000000; }
+      .border-line { stroke: #27272a; stroke-width: 1; fill: none; }
+      .border-highlight { stroke: #00f0ff; stroke-width: 1.5; fill: none; }
+      .box { fill: #09090b; stroke: #27272a; stroke-width: 1; rx: 0; }
+      .box-active { fill: #09090b; stroke: #00f0ff; stroke-width: 1.2; rx: 0; }
+      .text-title { fill: #ffffff; font-family: 'Courier New', monospace; font-size: 13px; font-weight: bold; letter-spacing: 1px; }
+      .text-sub { fill: #a1a1aa; font-family: 'Courier New', monospace; font-size: 11px; }
+      .text-code { fill: #00f0ff; font-family: 'Courier New', monospace; font-size: 11px; }
+      .text-accent { fill: #ff3b30; font-family: 'Courier New', monospace; font-size: 11px; font-weight: bold; }
+      .text-green { fill: #00ff66; font-family: 'Courier New', monospace; font-size: 11px; font-weight: bold; }
+      .arrow { stroke: #00f0ff; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+      .arrow-white { stroke: #71717a; stroke-width: 1.2; stroke-dasharray: 4,4; fill: none; marker-end: url(#arrowhead-white); }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00f0ff" />
+    </marker>
+    <marker id="arrowhead-white" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#71717a" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1000" height="580" class="bg" />
+
+  <!-- Outer Frame -->
+  <rect x="20" y="20" width="960" height="540" class="border-line" />
+  <line x1="20" y1="55" x2="980" y2="55" class="border-line" />
+
+  <!-- Header -->
+  <text x="35" y="42" class="text-title">SYSTEM ARCHITECTURE // MACRO-TO-MICRO STOCHASTIC INGESTION PIPELINE</text>
+  <text x="830" y="42" class="text-green">STATUS: [OPERATIONAL]</text>
+
+  <!-- 1. External Telemetry Sources Tier -->
+  <rect x="40" y="80" width="920" height="110" class="box" />
+  <text x="55" y="102" class="text-code">01 // EXTERNAL TELEMETRY SOURCES (MACRO AGGREGATIONS)</text>
+
+  <rect x="60" y="115" width="420" height="60" class="box" />
+  <text x="75" y="135" class="text-title">CLOUDFLARE RADAR REST API</text>
+  <text x="75" y="153" class="text-sub">L3/L4 vector ratios, Top origin/target country traffic shares, victim industries</text>
+
+  <rect x="520" y="115" width="420" height="60" class="box" />
+  <text x="535" y="135" class="text-title">ABUSEIPDB THREAT INTELLIGENCE</text>
+  <text x="535" y="153" class="text-sub">Verified malicious botnet IP blacklist, Autonomous System Numbers (ASNs), ISPs</text>
+
+  <!-- Arrows from Tier 1 to Tier 2 -->
+  <line x1="270" y1="175" x2="270" y2="225" class="arrow" />
+  <line x1="730" y1="175" x2="730" y2="225" class="arrow" />
+
+  <!-- 2. FastAPI Stochastic Engine Tier -->
+  <rect x="40" y="230" width="920" height="175" class="box-active" />
+  <text x="55" y="252" class="text-code">02 // FASTAPI STOCHASTIC REAL-TIME EMULATION ENGINE</text>
+
+  <!-- Sub-block A: Radar Poller Cache -->
+  <rect x="60" y="268" width="260" height="120" class="box" />
+  <text x="75" y="290" class="text-title">1. RADAR POLLING WORKER</text>
+  <text x="75" y="310" class="text-sub">• TTL Cache: 600 seconds</text>
+  <text x="75" y="328" class="text-sub">• Vector weight sampling</text>
+  <text x="75" y="346" class="text-sub">• Fallback empirical matrix</text>
+  <text x="75" y="364" class="text-green">[OFFLINE &amp; LIVE MODE READY]</text>
+
+  <!-- Sub-block B: Poisson & Volume Synthesizer -->
+  <rect x="345" y="268" width="310" height="120" class="box" />
+  <text x="360" y="290" class="text-title">2. STOCHASTIC SYNTHESIZER</text>
+  <text x="360" y="310" class="text-sub">• Poisson arrival: λ ∈ [2.5, 10.0]/s</text>
+  <text x="360" y="328" class="text-sub">• Volume: V ~ Exp(1/25) + 1.5 Gbps</text>
+  <text x="360" y="346" class="text-sub">• Geographic coordinate jitter:</text>
+  <text x="360" y="364" class="text-code">  Δlat,lng ~ Uniform(-2.5°, +2.5°)</text>
+
+  <!-- Sub-block C: Connection Manager -->
+  <rect x="680" y="268" width="260" height="120" class="box" />
+  <text x="695" y="290" class="text-title">3. WEBSOCKET BROADCASTER</text>
+  <text x="695" y="310" class="text-sub">• Endpoint: /ws/threat-stream</text>
+  <text x="695" y="328" class="text-sub">• Fast sync: 15 seed arcs</text>
+  <text x="695" y="346" class="text-sub">• Zero-lag async event loop</text>
+  <text x="695" y="364" class="text-sub">• Ping/Pong latency tracking</text>
+
+  <!-- Arrow between Synthesizer and WebSocket -->
+  <line x1="320" y1="328" x2="345" y2="328" class="arrow" />
+  <line x1="655" y1="328" x2="680" y2="328" class="arrow" />
+
+  <!-- Arrow from Tier 2 to Tier 3 -->
+  <line x1="810" y1="405" x2="810" y2="445" class="arrow" />
+
+  <!-- 3. Client Presentation Tier -->
+  <rect x="40" y="450" width="920" height="95" class="box" />
+  <text x="55" y="472" class="text-code">03 // CLIENT PRESENTATION TIER (REACT + THREE.JS + TAILWIND)</text>
+
+  <rect x="60" y="482" width="260" height="50" class="box" />
+  <text x="75" y="502" class="text-title">BUFFER INGESTION HOOK</text>
+  <text x="75" y="520" class="text-sub">35-Arc Rolling FIFO Window (60 FPS)</text>
+
+  <rect x="345" y="482" width="310" height="50" class="box" />
+  <text x="360" y="502" class="text-title">3D VECTOR WIREFRAME GLOBE</text>
+  <text x="360" y="520" class="text-sub">Celestial Graticule + Razor Laser Beams</text>
+
+  <rect x="680" y="482" width="260" height="50" class="box" />
+  <text x="695" y="502" class="text-title">AVIONICS HUD OVERLAY</text>
+  <text x="695" y="520" class="text-sub">Zero-fill hairline telemetry &amp; reticle</text>
+
+  <line x1="320" y1="507" x2="345" y2="507" class="arrow" />
+  <line x1="655" y1="507" x2="680" y2="507" class="arrow" />
+</svg>
